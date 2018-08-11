@@ -9,7 +9,7 @@ struct Node{
   Node *right;
 };
 
-class DLinkedList {
+class DList {
 
   private:
     Node *head,*tail;
@@ -30,6 +30,7 @@ class DLinkedList {
       tail = NULL;
     }
   public:
+    //adding at end
     void append(int data){
       //construct node object
       Node *temp = new Node;
@@ -46,6 +47,19 @@ class DLinkedList {
         temp->left = tail;
         tail = temp;//now tail points the temp, means it moves
       }
+    }
+    //adding at front
+    void prepend(int data){
+      //construct node object
+      Node *temp = new Node;
+      temp->data = data;
+      temp->left = NULL;
+      temp->right = NULL;
+
+      temp->right = head;
+      head->left = temp;
+      head = temp;
+
     }
 
     void displayForward(){
@@ -74,6 +88,7 @@ int main() {
   list.append(15);
   list.append(18);
   list.append(3);
+  list.prepend(199);
   cout<<"forward display"<<endl;
   list.displayForward();
   cout<<"backward display"<<endl;
