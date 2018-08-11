@@ -13,7 +13,8 @@ class DList {
 
   private:
     Node *head,*tail;
-     public:
+  
+  public:
     DList(){
       head = NULL;
       tail = NULL;
@@ -29,7 +30,6 @@ class DList {
       head = NULL;
       tail = NULL;
     }
-  public:
     //adding at end
     void append(int data){
       //construct node object
