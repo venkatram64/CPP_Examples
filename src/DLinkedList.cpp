@@ -64,7 +64,7 @@ class DList {
 
     //deleting the node
     void deleteElement(int value){
-      if(head != NULL){
+     
         //case 1: deleting first element
         Node* current = head;
         if(head->data == value){
@@ -73,29 +73,32 @@ class DList {
           cout<<"deleting the element"<<endl;
           delete current;
           return;
-        }else{
-          //case 2: middle element
-          Node* previous = head;
-          current = head->right;
-          while(current != NULL){
-            if(current->data == value){
+        }
+        //case 2: middle element
+        Node* previous = head;
+        current = head->right;
+        while(current != NULL){
+          if(current->data == value){
+            cout<<"Deleting the element"<<endl;
+            if(current->right != NULL){
+              previous->right = current->right;
+              Node* next = current->right;
+              next->left = previous;
+              delete current;
               break;
             }else{
-              previous = current;
-              current = current->right;
+              //case 3: if the elment is last
+              previous->right = NULL;
+              tail = previous;
+              delete current;
+              break;  
             }
-          }
-
-          if(current == NULL){
-            cout<<"Can't remove value: No match found"<<endl;
           }else{
-            cout<<"Deleting the element"<<endl;
-            previous->right = current;
-            previous->left = current->left;
-            delete current;
+            previous = current;
+            current = current->right;
           }
         }
-      }
+        
     }
 
     void displayForward(){
@@ -138,7 +141,13 @@ int main() {
   list.displayBackward();
   */
   //testing deleting for middle element
-  list.deleteElement(15);
+  /*list.deleteElement(15);
+  cout<<"forward display"<<endl;
+  list.displayForward();
+  cout<<"backward display"<<endl;
+  list.displayBackward();*/
+
+  list.deleteElement(3);
   cout<<"forward display"<<endl;
   list.displayForward();
   cout<<"backward display"<<endl;
