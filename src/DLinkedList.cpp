@@ -62,6 +62,42 @@ class DList {
 
     }
 
+    //deleting the node
+    void deleteElement(int value){
+      if(head != NULL){
+        //case 1: deleting first element
+        Node* current = head;
+        if(head->data == value){
+          head = head->right;
+          head->left = NULL;
+          cout<<"deleting the element"<<endl;
+          delete current;
+          return;
+        }else{
+          //case 2: middle element
+          Node* previous = head;
+          current = head->right;
+          while(current != NULL){
+            if(current->data == value){
+              break;
+            }else{
+              previous = current;
+              current = current->right;
+            }
+          }
+
+          if(current == NULL){
+            cout<<"Can't remove value: No match found"<<endl;
+          }else{
+            cout<<"Deleting the element"<<endl;
+            previous->right = current;
+            previous->left = current->left;
+            delete current;
+          }
+        }
+      }
+    }
+
     void displayForward(){
       Node *temp = head;
       while(temp != NULL){
@@ -89,6 +125,20 @@ int main() {
   list.append(18);
   list.append(3);
   list.prepend(199);
+  cout<<"forward display"<<endl;
+  list.displayForward();
+  cout<<"backward display"<<endl;
+  list.displayBackward();
+  cout<<"deleting element "<<endl;
+  //testing deleting
+  /*list.deleteElement(199);
+  cout<<"forward display"<<endl;
+  list.displayForward();
+  cout<<"backward display"<<endl;
+  list.displayBackward();
+  */
+  //testing deleting for middle element
+  list.deleteElement(15);
   cout<<"forward display"<<endl;
   list.displayForward();
   cout<<"backward display"<<endl;
