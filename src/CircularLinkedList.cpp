@@ -10,18 +10,16 @@ struct Node{
 class CircularLinkedList{
 
   private:
-    Node *last,*first;
+    Node *root;
 
   public:
 
     CircularLinkedList(){
-      last = NULL;
-      first = NULL;
+      root = NULL;
     }
 
     ~CircularLinkedList(){
-      last = NULL;
-      first = NULL;
+      root = NULL;
     }
     /*
       insertion will happen at the end
@@ -32,13 +30,13 @@ class CircularLinkedList{
       temp->data = num;
       temp->next = NULL;
 
-      if (last == NULL){
-          last = temp;
-          temp->next = last;   
+      if (root == NULL){
+          root = temp;
+          temp->next = root;   
       }else{
-          temp->next = last->next; 
-          last->next = temp;
-          last = temp;
+          temp->next = root->next; 
+          root->next = temp;
+          root = temp;
       }
 
     }
@@ -46,21 +44,21 @@ class CircularLinkedList{
     void deleteByValue(int value){
 
       /* If List has only one element*/
-      if (last->next == last && last->data == value){
-          Node *temp = last;
-          last = NULL;
+      if (root->next == root && root->data == value){
+          Node *temp = root;
+          root = NULL;
           delete temp;
           return;
       }
-      Node *current = last->next;
+      Node *current = root->next;
       /*First Element Deletion*/
       if (current->data == value){
           Node *temp = current;
-          last->next = current->next;
+          root->next = current->next;
           delete temp;
           return;
       }
-      while (current->next != last){
+      while (current->next != root){
         /*Deletion of Element in between*/
         if (current->next->data == value) {
             Node *temp = current->next;
@@ -74,9 +72,9 @@ class CircularLinkedList{
       /*Deletion of last element*/
       if (current->next->data == value){
           Node *temp = current->next;
-          current->next = last->next;
+          current->next = root->next;
           delete temp;		
-          last = current;
+          root = current;
           return;
       }
     }
@@ -84,9 +82,9 @@ class CircularLinkedList{
     void print(){
 
       cout<<"Data: "<<endl;
-      Node* temp = last->next;
+      Node* temp = root->next;
      
-      while(temp != last){
+      while(temp != root){
         cout<<temp->data<<endl;
         temp = temp->next;
       }
