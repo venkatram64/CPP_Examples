@@ -1,4 +1,21 @@
+#include <iostream>
 
+using namespace std;
+
+class QuickSort{
+  public:
+    QuickSort(){}
+
+    void quickSort(int array[], int left, int right){
+      if(left >= right){
+        return;
+      }
+      //finding the pivot
+      int pivot = array[(left + right)/2];
+      int index = partition(array, left, right, pivot);
+      //index will become partitioned array boundary of end index
+      quickSort(array, left, index - 1);
+      //index will become partitioned array boundary of starting index
       quickSort(array, index, right);
     }
 
