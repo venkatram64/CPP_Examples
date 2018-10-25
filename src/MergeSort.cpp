@@ -6,7 +6,7 @@ class MergeSort{
   public: 
     MergeSort(){}
     /* l is for left index and r is right index of the 
-      sub-array of arr to be sorted 
+      sub-array of array to be sorted 
     */
     void mergeSort(int array[], int l, int r){
 
@@ -15,16 +15,16 @@ class MergeSort{
         int m = l + (r -l)/2;
         //sort first and second halves
         mergeSort(array, l, m); //upto middle
-        mergeSort(array, m+1, r);//middle to riht
+        mergeSort(array, m+1, r);//middle to right
 
         merge(array, l, m, r);
       }
 
     }
 
-    // Merges two subarrays of arr[]. 
-    // First subarray is arr[l..m] 
-    // Second subarray is arr[m+1..r] 
+    // Merges two subarrays of array[]. 
+    // First subarray is array[l..m] 
+    // Second subarray is array[m+1..r] 
 
     void merge(int array[], int l, int m, int r){
       int i,j,k;
@@ -42,7 +42,7 @@ class MergeSort{
         right[j] = array[m + 1 + j];
       }
 
-      /* Merge the temp arrays back into arr[l..r]*/
+      /* Merge the temp arrays back into array[l..r]*/
       i = 0; // Initial index of first subarray 
       j = 0; // Initial index of second subarray 
       k = l; // Initial index of merged subarray 
@@ -58,7 +58,7 @@ class MergeSort{
         k++;
       }
 
-      /* Copy the remaining elements of L[], if there 
+      /* Copy the remaining elements of left[], if there 
        are any */
 
        while(i < n1){
@@ -67,7 +67,7 @@ class MergeSort{
          k++;
        }
 
-       /* Copy the remaining elements of R[], if there 
+       /* Copy the remaining elements of right[], if there 
        are any */
        while(j < n2){
          array[k] = right[j];
